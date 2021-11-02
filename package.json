@@ -1,27 +1,34 @@
 {
-  "name": "js-22",
-  "version": "1.0.0",
+  "name": "parcel-project-template",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://MaryanaDeygithub.io/goit-js-hw-12-countries",
   "scripts": {
-    "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "dev": "parcel src/*.html",
+    "build": "parcel build src/*.html --public-url /goit-js-hw-12-countries/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MaryanaDey/goit-js-hw-12-countries.git"
+    "url": "git+https://github.com/goitacademy/parcel-project-template.git"
   },
   "keywords": [],
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MaryanaDey/goit-js-hw-12-countries/issues"
+    "url": "https://github.com/goitacademy/parcel-project-template/issues"
   },
-  "homepage": "https://github.com/MaryanaDey/js-22#readme",
   "devDependencies": {
-    "parcel-bundler": "^1.12.4",
+    "@pnotify/core": "^5.2.0",
+    "parcel-bundler": "^1.12.5",
     "parcel-plugin-handlebars-precompile": "^1.0.2",
-    "parcel-plugin-nuke-dist": "^1.0.1"
+    "parcel-plugin-nuke-dist": "^1.0.1",
+    "pnotify": "^5.2.0",
+    "posthtml-include": "^1.6.2",
+    "sass": "^1.32.8"
   },
-  "dependencies": {}
+  "dependencies": {
+    "lodash.debounce": "^4.0.8",
+    "material-design-icon-fonts": "^3.0.1"
+  }
 }
