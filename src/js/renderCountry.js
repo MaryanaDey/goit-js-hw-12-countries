@@ -1,7 +1,9 @@
 import API from './api-service';
 import getRefs from './getRefs';
+
 import countryMarkup from '../templates/counrty_markup.hbs';
 import listMarkup from '../templates/list_markup.hbs';
+
 import debounce from 'lodash.debounce';
 import '@pnotify/core/dist/BrightTheme.css';
 import { error } from '@pnotify/core';
@@ -12,6 +14,7 @@ refs.searchForm.addEventListener('input', debounce(onSearh, 500));
 
 function onSearh(e) {
   e.preventDefault();
+  
   const searchQuery = refs.searchForm.value;
   clearContainer();
   API.fethCountry(searchQuery).then(renderCountry).catch(onFetchError);
