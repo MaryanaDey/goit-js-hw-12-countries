@@ -28,7 +28,7 @@ function renderCountry(country) {
   } else if (countryList <= 10) {
     refs.cardContainer.innerHTML = listMarkup(country);
   } else if (countryList > 10) {
-    console.log('дописати');
+    console.log('Введи название страны');
     error({
       title: false,
       text: 'Give me more letters and I will find the country',
