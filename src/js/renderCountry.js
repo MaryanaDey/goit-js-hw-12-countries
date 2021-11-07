@@ -10,6 +10,7 @@ import { error } from '@pnotify/core';
 
 const refs = getRefs();
 
+const country = value => value.toLowerCase().split(' ').join('');
 refs.searchForm.addEventListener('input', debounce(onSearh, 500));
 
 function onSearh(e) {
@@ -20,6 +21,7 @@ function onSearh(e) {
   API.fethCountry(searchQuery).then(renderCountry).catch(onFetchError);
 }
 
+
 function renderCountry(country) {
   let countryList = country.length;
 
@@ -27,10 +29,8 @@ function renderCountry(country) {
     refs.cardContainer.innerHTML = countryMarkup(country);
   } else if (countryList > 1  && countryList <= 10) {
     refs.cardContainer.innerHTML = listMarkup(country);
-  } 
-   
-   {
-    alert('Введи название страны');
+  } else if (countryList > 10) {
+    console.log('введи полностью страну');
     error({
       title: false,
       text: 'Give me more letters and I will find the country',
