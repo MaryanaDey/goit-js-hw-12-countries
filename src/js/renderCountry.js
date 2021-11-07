@@ -23,12 +23,14 @@ function onSearh(e) {
 function renderCountry(country) {
   let countryList = country.length;
 
-  if (countryList === 1) {
+  if (countryList === 1 ) {
     refs.cardContainer.innerHTML = countryMarkup(country);
-  } else if (countryList <= 10) {
+  } else if (countryList > 1  && countryList <= 10) {
     refs.cardContainer.innerHTML = listMarkup(country);
-  } else if (countryList > 10) {
-    console.log('Введи название страны');
+  } 
+   
+   {
+    alert('Введи название страны');
     error({
       title: false,
       text: 'Give me more letters and I will find the country',
