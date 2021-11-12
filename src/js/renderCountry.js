@@ -11,11 +11,19 @@ import { error } from '@pnotify/core';
 const refs = getRefs();
 
 const country = value => value.toLowerCase().split(' ').join('');
-refs.searchForm.addEventListener('input', debounce(onSearh, 500));
 
+//Вводим строку  и ждем
+refs.searchForm.addEventListener('input',
+  debounce(onSearh, 500)
+ );
+
+// Проверяем значение 
 function onSearh(e) {
   e.preventDefault();
-  
+
+  const searchQuerys = e.target.value.trim()
+  if (!searchQuerys) return alert('Веди страну');
+
   const searchQuery = refs.searchForm.value;
   clearContainer();
   API.fethCountry(searchQuery).then(renderCountry).catch(onFetchError);
@@ -27,8 +35,11 @@ function renderCountry(country) {
 
   if (countryList === 1 ) {
     refs.cardContainer.innerHTML = countryMarkup(country);
+
   } else if (countryList > 1  && countryList <= 10) {
-    refs.cardContainer.innerHTML = listMarkup(country);
+   refs.cardContainer.innerHTML = listMarkup(country);
+   //renderMarkup(country,listMarkup)
+
   } else if (countryList > 10) {
     console.log('введи полностью страну');
     error({
@@ -39,6 +50,12 @@ function renderCountry(country) {
       delay: 3000,
     });
   }
+ // console.log(country.length)
+}
+
+function renderMarkup(countries,name){
+  const markup = countries.map(conty =>name(conty)).join('');
+  refs.cardContainer.insertAdjacentHTML('beforeend',markup)
 }
 
 function onFetchError(error) {
