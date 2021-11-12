@@ -22,36 +22,46 @@ function onSearh(e) {
   e.preventDefault();
 
   const searchQuerys = e.target.value.trim()
-  if (!searchQuerys) return alert('Веди страну');
+
+  if (!searchQuerys) 
+  return alert('Введи страну');
 
   const searchQuery = refs.searchForm.value;
   clearContainer();
-  API.fethCountry(searchQuery).then(renderCountry).catch(onFetchError);
+  API.fethCountry(searchQuery)
+  .then(renderCountry)
+  .catch(onFetchError);
 }
 
 
 function renderCountry(country) {
   let countryList = country.length;
 
-  if (countryList === 1 ) {
+   if (countryList === 1 ) {
     refs.cardContainer.innerHTML = countryMarkup(country);
+ 
+   } else if (countryList >= 1  && countryList <= 10) {
+      refs.cardContainer.innerHTML = listMarkup(country);
+ 
+   } else if (countryList){
+   //refs.cardContainer.innerHTML = listMarkup(country);
+ }
 
-  } else if (countryList > 1  && countryList <= 10) {
-   refs.cardContainer.innerHTML = listMarkup(country);
-   //renderMarkup(country,listMarkup)
+  setTimeout(() => {
 
-  } else if (countryList > 10) {
-    console.log('введи полностью страну');
-    error({
-      title: false,
-      text: 'Give me more letters and I will find the country',
-      shadow: true,
-      sticker: false,
-      delay: 3000,
-    });
-  }
- // console.log(country.length)
-}
+     if (countryList > 10) {
+      //alert('введи полностью страну');
+     error({
+       title: false,
+       text: 'Give me more letters and I will find the country',
+       shadow: true,
+       sticker: false,
+       delay: 3000,
+     });
+   } 
+  },3000)
+  
+ }
 
 function renderMarkup(countries,name){
   const markup = countries.map(conty =>name(conty)).join('');
